@@ -2,6 +2,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Fab from "@mui/material/Fab";
 import React from "react";
 import { createRoot } from "react-dom/client";
+import FounderModeDrive from "./FounderModeDrive";
 import FounderModeRectangle from "./FounderModeRectangle";
 
 const FounderModeButton: React.FC = () => {
@@ -35,6 +36,19 @@ const FounderModeButton: React.FC = () => {
       root.render(
         <FounderModeRectangle from={from} subject={subject} content={content} />
       );
+    }
+
+    const targetDiv = document.querySelector(".ndfHFb-c4YZDc-Wrql6b-SmKAyb");
+    if (targetDiv) {
+      const existingDrive = document.getElementById("founder-mode-drive");
+      if (!existingDrive) {
+        const driveContainer = document.createElement("div");
+        driveContainer.id = "founder-mode-drive-container";
+        targetDiv.parentElement?.appendChild(driveContainer);
+
+        const driveRoot = createRoot(driveContainer);
+        driveRoot.render(<FounderModeDrive />);
+      }
     }
   };
 

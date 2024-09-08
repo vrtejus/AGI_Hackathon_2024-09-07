@@ -1,10 +1,11 @@
 import MenuIcon from "@mui/icons-material/Menu";
+import { Stack } from "@mui/material";
 import Fab from "@mui/material/Fab";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import FounderModeDrive from "./FounderModeDrive";
-import FounderModeRectangle from "./FounderModeRectangle";
 import FounderModeQuestion from "./FounderModeQuestion";
+import FounderModeRectangle from "./FounderModeRectangle";
 
 const FounderModeButton: React.FC = () => {
   const handleClick = () => {
@@ -39,7 +40,9 @@ const FounderModeButton: React.FC = () => {
       );
     }
 
-    const targetDiv = document.querySelector(".style-scope yt-chip-cloud-renderer");
+    const targetDiv = document.querySelector(
+      ".style-scope yt-chip-cloud-renderer"
+    );
     if (targetDiv) {
       const existingDrive = document.getElementById("founder-mode-drive");
       if (!existingDrive) {
@@ -48,28 +51,34 @@ const FounderModeButton: React.FC = () => {
         targetDiv.parentElement?.appendChild(driveContainer);
 
         const driveRoot = createRoot(driveContainer);
-        driveRoot.render(<FounderModeQuestion />);
+        driveRoot.render(
+          <Stack direction="column" gap={2}>
+            <FounderModeQuestion />
+            <FounderModeDrive />
+          </Stack>
+        );
       }
     }
 
     const questionDiv = document.querySelector(".description-inline-expander");
-  if (questionDiv) {
-    const existingQuestion = document.getElementById("founder-mode-question-container");
-    if (existingQuestion) {
-      existingQuestion.remove();
+    if (questionDiv) {
+      const existingQuestion = document.getElementById(
+        "founder-mode-question-container"
+      );
+      if (existingQuestion) {
+        existingQuestion.remove();
+      }
+
+      // Create a new container to render the React component
+      const questionContainer = document.createElement("div");
+      questionContainer.id = "founder-mode-question-container";
+
+      questionDiv.parentElement?.appendChild(questionContainer);
+
+      // Render the independent FounderModeQuestion component
+      const questionRoot = createRoot(questionContainer);
+      questionRoot.render(<FounderModeQuestion />);
     }
-
-    // Create a new container to render the React component
-    const questionContainer = document.createElement("div");
-    questionContainer.id = "founder-mode-question-container";
-
-    questionDiv.parentElement?.appendChild(questionContainer);
-
-    // Render the independent FounderModeQuestion component
-    const questionRoot = createRoot(questionContainer);
-    questionRoot.render(<FounderModeQuestion />);
-  }
-
   };
 
   return (
@@ -77,8 +86,7 @@ const FounderModeButton: React.FC = () => {
       color="primary"
       aria-label="founder-mode"
       onClick={handleClick}
-      sx={{ position: "fixed", bottom: 10, right: 10
-       }}
+      sx={{ position: "fixed", bottom: 10, right: 10 }}
     >
       <MenuIcon />
     </Fab>

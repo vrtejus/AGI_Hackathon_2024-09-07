@@ -7,6 +7,16 @@ interface TranscriptEntry {
   dialogue: string;
 }
 
+const highlightText = (text: string, query: string) => {
+  if (!query.trim()) return text;
+
+  // Escape special characters in the query for regex
+  const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escapedQuery})`, "gi");
+
+  return text.replace(regex, (match) => `<mark style="background-color: #ff0; color: #000;">${match}</mark>`);
+};
+
 const TranscriptDisplay: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredTranscript, setFilteredTranscript] = useState<TranscriptEntry[]>(transcript);
@@ -70,7 +80,7 @@ const TranscriptDisplay: React.FC = () => {
           filteredTranscript.map((entry, index) => (
             <div key={index} style={{ marginBottom: "20px" }}>
               <p style={{ fontWeight: "bold" }}>{entry.speaker} ({entry.time}):</p>
-              <p>{entry.dialogue}</p>
+              <p dangerouslySetInnerHTML={{ __html: highlightText(entry.dialogue, searchQuery) }} />
             </div>
           ))
         ) : (

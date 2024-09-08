@@ -4,6 +4,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import FounderModeDrive from "./FounderModeDrive";
 import FounderModeRectangle from "./FounderModeRectangle";
+import FounderModeQuestion from "./FounderModeQuestion";
 
 const FounderModeButton: React.FC = () => {
   const handleClick = () => {
@@ -47,9 +48,28 @@ const FounderModeButton: React.FC = () => {
         targetDiv.parentElement?.appendChild(driveContainer);
 
         const driveRoot = createRoot(driveContainer);
-        driveRoot.render(<FounderModeDrive />);
+        driveRoot.render(<FounderModeQuestion />);
       }
     }
+
+    const questionDiv = document.querySelector(".description-inline-expander");
+  if (questionDiv) {
+    const existingQuestion = document.getElementById("founder-mode-question-container");
+    if (existingQuestion) {
+      existingQuestion.remove();
+    }
+
+    // Create a new container to render the React component
+    const questionContainer = document.createElement("div");
+    questionContainer.id = "founder-mode-question-container";
+
+    questionDiv.parentElement?.appendChild(questionContainer);
+
+    // Render the independent FounderModeQuestion component
+    const questionRoot = createRoot(questionContainer);
+    questionRoot.render(<FounderModeQuestion />);
+  }
+
   };
 
   return (

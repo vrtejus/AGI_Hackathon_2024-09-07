@@ -6,7 +6,11 @@
     "activeTab",
     "https://mail.google.com/*",
     "https://*.slack.com/*",
-    "https://www.primevideo.com/*"
+    "https://www.primevideo.com/*",
+    "https://drive.google.com/*",
+    "https://www.youtube.com/*"
+
+
   ],
   "content_scripts": [
     {
@@ -14,7 +18,8 @@
         "https://mail.google.com/*",
         "https://*.slack.com/*",
         "https://www.primevideo.com/*",
-        "https://drive.google.com/*"
+        "https://drive.google.com/*",
+        "https://www.youtube.com/*"
       ],
       "js": ["js/content.js"]
     }

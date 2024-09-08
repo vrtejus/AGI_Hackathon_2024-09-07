@@ -38,7 +38,7 @@ const FounderModeButton: React.FC = () => {
       );
     }
 
-    const targetDiv = document.querySelector(".ndfHFb-c4YZDc-Wrql6b-SmKAyb");
+    const targetDiv = document.querySelector(".style-scope yt-chip-cloud-renderer");
     if (targetDiv) {
       const existingDrive = document.getElementById("founder-mode-drive");
       if (!existingDrive) {
@@ -57,7 +57,8 @@ const FounderModeButton: React.FC = () => {
       color="primary"
       aria-label="founder-mode"
       onClick={handleClick}
-      sx={{ position: "fixed", bottom: 16, right: 16 }}
+      sx={{ position: "fixed", bottom: 10, right: 10
+       }}
     >
       <MenuIcon />
     </Fab>

@@ -1,4 +1,4 @@
-[
+export const transcript = [
     {
         "speaker": "Speaker 1",
         "time": "0:00",

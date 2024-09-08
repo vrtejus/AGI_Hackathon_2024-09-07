@@ -24,7 +24,7 @@ const FounderModeQuestion: React.FC = () => {
         },
         body: JSON.stringify({
           model: "gemma",
-          prompt: `Provide a detailed response based on the following transcript content: ${transcriptText}`,
+          prompt: `Answer ${question} based on this transcript: ${transcriptText}`,
           stream: true, // Enable streaming
         }),
       });

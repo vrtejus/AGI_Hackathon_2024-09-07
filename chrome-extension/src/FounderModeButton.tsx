@@ -8,6 +8,15 @@ const FounderModeButton: React.FC = () => {
   const handleClick = () => {
     console.log("Founder Mode button clicked!");
 
+    // Extract email data from the DOM
+    const from = document.querySelector(".gD")?.textContent || "Unknown Sender";
+    const subject = document.querySelector(".hP")?.textContent || "No Subject";
+    const content =
+      document.querySelector(".a3s.aiL")?.textContent || "No Content";
+
+    // Log the extracted values for testing
+    console.log(`From: ${from}, Subject: ${subject}, Content: ${content}`);
+
     const replySuggestions = document.querySelector(".brb");
     if (replySuggestions) {
       const existingRect = document.getElementById("founder-mode-rectangle");
@@ -21,9 +30,11 @@ const FounderModeButton: React.FC = () => {
 
       replySuggestions.appendChild(container);
 
-      // Render the independent FounderModeRectangle component
+      // Render the independent FounderModeRectangle component with props
       const root = createRoot(container);
-      root.render(<FounderModeRectangle />);
+      root.render(
+        <FounderModeRectangle from={from} subject={subject} content={content} />
+      );
     }
   };
 
